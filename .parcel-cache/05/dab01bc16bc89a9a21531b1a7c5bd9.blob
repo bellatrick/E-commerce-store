@@ -1,0 +1,27 @@
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+
+// export async function getJSON (data){
+//   if(!data) return;
+//   var raw = JSON.stringify({
+//     "name": data.name,
+//     "email": data.email,
+//     "password": data.password,
+//     "phonenumber": data.Phone
+//   });
+  
+//   var requestOptions = {
+//     method: 'POST',
+//     headers: myHeaders,
+//     body: raw,
+//     redirect: 'follow'
+//   };
+//   try{
+//   const getPost=  await fetch('https://shopappanter.herokuapp.com/api/users/register', requestOptions)
+//    const data= await getPost.json()
+//   console.log(data);}
+//   catch(err){
+//     throw err
+//   }
+// }

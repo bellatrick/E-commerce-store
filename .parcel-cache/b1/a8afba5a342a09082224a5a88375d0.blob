@@ -1,0 +1,87 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _abstractViewJs = require('./abstractView.js');
+var _abstractViewJsDefault = _parcelHelpers.interopDefault(_abstractViewJs);
+class registerView extends _abstractViewJsDefault.default {
+  constructor() {
+    super();
+  }
+  _data;
+  register = document.querySelector('.register');
+  async getHtml() {
+    return `<div class="form-container" id='register'>
+        <div class="form-head">
+            <h3>Create a new account</h3>
+        </div>
+        <form class="registerForm form-input">  
+        <div> <label class="fullName" for="text">Full name</label> <br>
+        <input type="text" id="fullName" class='registerFullName'>
+         </div> 
+         <div> <label class="phone" for="text">Mobile Number</label> <br>
+         <input type="text" id="Mobile Number" class='registerPhone'>
+          </div> 
+            <div> <label class="email" for="Email">Email</label> <br>
+                <input type="text" id="email" class='registerEmail'>
+            </div>
+            <div><label for="password">Password</label><br>
+                <input type="password" name="" id="password" class='registerPassword'>
+            </div>
+            <div><input class="submitRegister" type="submit" value="REGISTER"></div>
+        </form>
+    </div>
+    <div class="account-div">
+        <p class="no-account"><a href="/login" data-link>Already have an account? Login</a> </p>
+    </div>`;
+  }
+  registrationHandler() {
+    this.register.addEventListener('click', this.showViews.bind(this));
+  }
+  getInputValues() {
+    let data;
+    let email;
+    let fullName;
+    let phoneNumber;
+    let password;
+    this.parentEl.addEventListener('submit', function (e) {
+      e.preventDefault();
+      fullName = document.querySelector('.registerFullName');
+      email = document.querySelector('.registerEmail');
+      phoneNumber = document.querySelector('.registerPhone');
+      password = document.querySelector('.registerPassword');
+      const form = document.querySelector('.registerForm');
+      if (!email && !password && !form) return;
+      data = {
+        name: fullName.value,
+        email: email.value,
+        password: password.value,
+        Phone: phoneNumber.value
+      };
+      getJSON(data);
+    });
+    this._data = data;
+  }
+}
+async function getJSON(data) {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  var raw = JSON.stringify({
+    "name": data.name,
+    "email": data.email,
+    "password": data.password,
+    "phonenumber": data.Phone
+  });
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+  try {
+    const getPost = await fetch('https://shopappanter.herokuapp.com/api/users/register', requestOptions);
+    const data = await getPost.json();
+    console.log(data);
+  } catch (err) {
+    throw err;
+  }
+}
+exports.default = new registerView();

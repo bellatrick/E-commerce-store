@@ -1,0 +1,22 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+class abstractView {
+  constructor() {}
+  parentEl = document.querySelector('.container');
+  clearView(parentEl) {
+    parentEl.innerHTML = '';
+  }
+  async getHtml() {
+    return '';
+  }
+  async showViews() {
+    return this.parentEl.innerHTML = await this.getHtml();
+  }
+  setBackground() {
+    document.body.style.backgroundImage = 'linear-gradient( 45deg, white, #041E42)';
+  }
+  resetBackground() {
+    document.body.style.backgroundImage = 'linear-gradient(  white, white)';
+  }
+}
+exports.default = abstractView;

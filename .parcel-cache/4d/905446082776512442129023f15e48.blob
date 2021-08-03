@@ -1,0 +1,13 @@
+var _ViewsLoginViewJs = require('./Views/loginView.js');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _ViewsLoginViewJsDefault = _parcelHelpers.interopDefault(_ViewsLoginViewJs);
+var _ViewsRegisterViewJs = require('./Views/registerView.js');
+var _ViewsRegisterViewJsDefault = _parcelHelpers.interopDefault(_ViewsRegisterViewJs);
+require('./model.js');
+if (module.hot) {
+  module.hot.accept();
+}
+_ViewsRegisterViewJsDefault.default.registrationHandler();
+_ViewsLoginViewJsDefault.default.getInputValues();
+_ViewsLoginViewJsDefault.default.loginHandler();
+_ViewsRegisterViewJsDefault.default.getInputValues();

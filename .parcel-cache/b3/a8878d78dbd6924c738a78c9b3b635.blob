@@ -1,0 +1,55 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _abstractViewJs = require('./abstractView.js');
+var _abstractViewJsDefault = _parcelHelpers.interopDefault(_abstractViewJs);
+class loginView extends _abstractViewJsDefault.default {
+  login = document.querySelector('.login');
+  constructor() {
+    super();
+    this.generateMarkup();
+  }
+  generateMarkup() {
+    return ` <div class="form-container" id='login'>
+    <div class="form-head">
+        <h3>Login to your account</h3>
+    </div>
+    <!-- this is the input field to type in your log in details -->
+    <form class="form-input">   
+        <div> <label class="email" for="Email">Email or Phone Number</label> <br>
+            <input type="text" class="Email" id="email">
+        </div>
+        <div><label for="password">Password</label><br>
+            <input type="password" name="" id="password" class='password'>
+        </div>
+        <div><input class="submit" id='Submit' type="submit" value="LOG IN"></div>
+    </form>
+    </div>
+    <!-- this is the bottom link -->
+    <div class="account-div">
+    <p class="no-account"><a href="/registration" data-link >Don't have an account? Register</a> </p>
+    </div>`;
+  }
+  getHtml() {
+    return this.generateMarkup();
+  }
+  loginHandler() {
+    this.login.addEventListener('click', this.showViews.bind(this));
+  }
+  getInputValues() {
+    const data = [];
+    let email;
+    let password;
+    this.parentEl.addEventListener('submit', function (e) {
+      e.preventDefault();
+      email = document.querySelector('.Email');
+      password = document.querySelector('.password');
+      if (!email && !password) return;
+      data.push({
+        Email: email.value,
+        Password: password.value
+      });
+      console.log(data);
+    });
+  }
+}
+exports.default = new loginView();
